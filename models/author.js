@@ -42,6 +42,18 @@ AuthorSchema.virtual('date_of_death_formatted').get(function () {
     : '';
 });
 
+AuthorSchema.virtual('date_of_birth_formatted_html').get(function () {
+  return this.date_of_birth
+    ? DateTime.fromJSDate(this.date_of_birth).toISODate()
+    : '';
+});
+
+AuthorSchema.virtual('date_of_death_formatted_html').get(function () {
+  return this.date_of_death
+    ? DateTime.fromJSDate(this.date_of_death).toISODate()
+    : '';
+});
+
 AuthorSchema.virtual('life_span').get(function () {
   if (!this.date_of_birth) {
     return '';
