@@ -16,15 +16,27 @@ block content
       input#imprint.form-control(type='text' placeholder='Publisher and date information' name='imprint' required='true' value=(undefined===bookinstance ? '' : bookinstance.imprint))
     div.form-group
       label(for='due_back') Date when book available:
-      input#due_back.form-control(type='date' name='due_back' value=(undefined===bookinstance ? '' : bookinstance.due_back))
+      input#due_back.form-control(type='date' name='due_back' value=(undefined===bookinstance ? '' : bookinstance.due_back_formatted_html))
 
     div.form-group
       label(for='status') Status:
       select#status.form-control(type='select' placeholder='Select status' name='status' required='true')
-        option(value='Maintenance') Maintenance
-        option(value='Available') Available
-        option(value='Loaned') Loaned
-        option(value='Reserved') Reserved
+        if bookinstance != undefined && bookinstance.status == "Maintenance"
+            option(value='Maintenance' selected) Maintenance
+        else 
+            option(value='Maintenance') Maintenance
+        if bookinstance != undefined && bookinstance.status == "Available"
+            option(value='Available' selected) Available
+        else 
+            option(value='Available') Available
+        if bookinstance != undefined && bookinstance.status == "Loaned"
+            option(value='Loaned' selected) Loaned
+        else 
+            option(value='Loaned') Loaned
+        if bookinstance != undefined && bookinstance.status == "Reserved"
+            option(value='Reserved' selected) Reserved
+        else 
+            option(value='Reserved') Reserved
 
     button.btn.btn-primary(type='submit') Submit
 
